@@ -3,6 +3,10 @@ name: "Release"
 on:
   workflow_call:
 
+permissions:
+  id-token: write
+  attestations: write
+
 jobs:
   build:
     name: Release

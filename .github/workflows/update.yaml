@@ -3,6 +3,10 @@ name: "Update Upstream"
 on:
   workflow_call:
 
+permissions:
+  id-token: write
+  attestations: write
+
 jobs:
   update:
     runs-on: ubuntu-22.04
