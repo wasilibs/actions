@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/attest-build-provenance@43f349e35dd304d0e1fa8237b1b7f44c7489fe5b # v1
+      - uses: actions/attest-build-provenance@bdd51370e0416ac948727f861e03c2f05d32d78e # v1
         with:
           subject-path: |
             dist/*.tar.gz
