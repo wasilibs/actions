@@ -57,6 +57,11 @@ jobs:
       - run: go run ./build wasm
         if: steps.check-diff.outcome == 'failure'
 
+      - uses: actions/attest-build-provenance@bdd51370e0416ac948727f861e03c2f05d32d78e # v1
+        if: steps.check-diff.outcome == 'failure'
+        with:
+          subject-path: internal/wasm/*.wasm
+
       - name: build and create PR
         if: steps.check-diff.outcome == 'failure'
         run: |
