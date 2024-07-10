@@ -36,7 +36,7 @@ jobs:
         with:
           package_json_file: buildtools/wasm/package.json
 
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+      - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4
         with:
           cache: pnpm
           cache-dependency-path: buildtools/wasm/pnpm-lock.yaml
@@ -57,7 +57,7 @@ jobs:
       - run: go run ./build wasm
         if: steps.check-diff.outcome == 'failure'
 
-      - uses: actions/attest-build-provenance@bdd51370e0416ac948727f861e03c2f05d32d78e # v1
+      - uses: actions/attest-build-provenance@5e9cb68e95676991667494a6a4e59b8a2f13e1d0 # v1
         if: steps.check-diff.outcome == 'failure'
         with:
           subject-path: internal/wasm/*.wasm
