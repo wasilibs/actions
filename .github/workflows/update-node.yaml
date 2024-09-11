@@ -7,6 +7,10 @@ on:
         type: string
         description: "The packages to update"
         required: true
+      no-update:
+        type: boolean
+        description: "Skip updating dependencies"
+        required: false
 
 permissions:
   id-token: write
@@ -50,7 +54,7 @@ jobs:
         continue-on-error: true
 
       - name: Update dependencies
-        if: steps.check-diff.outcome == 'failure'
+        if: steps.check-diff.outcome == 'failure' && !inputs.no-update
         run: pnpm up --latest
         working-directory: buildtools/wasm
 
