@@ -61,7 +61,7 @@ jobs:
       - run: go run ./build wasm
         if: steps.check-diff.outcome == 'failure'
 
-      - uses: actions/attest-build-provenance@7668571508540a607bdfd90a87a560489fe372eb # v1
+      - uses: actions/attest-build-provenance@520d128f165991a6c774bcb264f323e3d70747f4 # v1
         if: steps.check-diff.outcome == 'failure'
         with:
           subject-path: internal/wasm/*.wasm
