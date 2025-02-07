@@ -36,20 +36,9 @@ jobs:
           go-version-file: go.work
           cache-dependency-path: "**/go.sum"
 
-<<<<<<< Updated upstream
-      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v3
-        with:
-          package_json_file: buildtools/wasm/package.json
-
-      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
-        with:
-          cache: pnpm
-          cache-dependency-path: buildtools/wasm/pnpm-lock.yaml
-=======
       - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
         with:
           bun-version-file: buildtools/wasm/package.json
->>>>>>> Stashed changes
 
       - name: Update upstream
         run: bun update --latest ${{ inputs.packages }}
