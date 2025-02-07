@@ -36,6 +36,7 @@ jobs:
           go-version-file: go.work
           cache-dependency-path: "**/go.sum"
 
+<<<<<<< Updated upstream
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v3
         with:
           package_json_file: buildtools/wasm/package.json
@@ -44,9 +45,14 @@ jobs:
         with:
           cache: pnpm
           cache-dependency-path: buildtools/wasm/pnpm-lock.yaml
+=======
+      - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
+        with:
+          bun-version-file: buildtools/wasm/package.json
+>>>>>>> Stashed changes
 
       - name: Update upstream
-        run: pnpm up --latest ${{ inputs.packages }}
+        run: bun update --latest ${{ inputs.packages }}
         working-directory: buildtools/wasm
 
       - run: git diff --exit-code
@@ -55,7 +61,7 @@ jobs:
 
       - name: Update dependencies
         if: steps.check-diff.outcome == 'failure' && !inputs.no-update
-        run: pnpm up --latest
+        run: bun update --latest
         working-directory: buildtools/wasm
 
       - run: go run ./build wasm
