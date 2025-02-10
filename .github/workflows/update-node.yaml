@@ -50,7 +50,10 @@ jobs:
 
       - name: Update dependencies
         if: steps.check-diff.outcome == 'failure' && !inputs.no-update
-        run: bun update --latest
+        run: |
+          bun update --latest
+          # https://github.com/oven-sh/bun/issues/13388
+          bun install
         working-directory: buildtools/wasm
 
       - run: go run ./build wasm
