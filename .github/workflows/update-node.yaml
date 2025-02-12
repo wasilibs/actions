@@ -41,7 +41,10 @@ jobs:
           bun-version-file: buildtools/wasm/package.json
 
       - name: Update upstream
-        run: bun update --latest ${{ inputs.packages }}
+        run: |
+          bun update --latest ${{ inputs.packages }}
+          # https://github.com/oven-sh/bun/issues/13388
+          bun install
         working-directory: buildtools/wasm
 
       - run: git diff --exit-code
@@ -50,10 +53,7 @@ jobs:
 
       - name: Update dependencies
         if: steps.check-diff.outcome == 'failure' && !inputs.no-update
-        run: |
-          bun update --latest
-          # https://github.com/oven-sh/bun/issues/13388
-          bun install
+        run: bun update --latest
         working-directory: buildtools/wasm
 
       - run: go run ./build wasm
