@@ -53,7 +53,9 @@ jobs:
 
       - name: Update dependencies
         if: steps.check-diff.outcome == 'failure' && !inputs.no-update
-        run: bun update --latest
+        run: |
+          bun update --latest
+          bun install
         working-directory: buildtools/wasm
 
       - run: go run ./build wasm
