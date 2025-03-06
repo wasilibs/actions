@@ -34,7 +34,7 @@ jobs:
         id: check-diff
         continue-on-error: true
 
-      - uses: actions/attest-build-provenance@bd77c077858b8d561b7a36cbe48ef4cc642ca39d # v1
+      - uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v1
         if: steps.check-diff.outcome == 'failure'
         with:
           subject-path: internal/wasm/*.wasm
