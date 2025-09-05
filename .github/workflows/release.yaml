@@ -13,20 +13,14 @@ jobs:
     name: Release
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-      - uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34 # v5
-        with:
-          go-version-file: go.work
+      - uses: curioswitch/go-build/.github/actions/setup-go@7489f72867246693fc1cc65560c68cdc860a1f8a # v0.5.2
 
       - run: go run ./build release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/attest-build-provenance@520d128f165991a6c774bcb264f323e3d70747f4 # v1
+      - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
         with:
-          subject-path: |
-            dist/*.tar.gz
-            dist/*.zip
+          subject-checksums: dist/checksums.txt
