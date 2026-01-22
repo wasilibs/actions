@@ -21,19 +21,19 @@ jobs:
     name: Release
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/create-github-app-token@67e27a7eb7db372a1c61a7f9bdab8699e9ee57f7 # v1.11.3
+      - uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
         id: app-token
         with:
           app-id: ${{ vars.WASILIBS_APP_ID }}
           private-key: ${{ secrets.WASILIBS_APP_PRIVATE_KEY }}
 
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
 
       - uses: curioswitch/go-build/.github/actions/setup-go@8304121f488a5faa0b1ff094b6e2abc8da5b6c43 # v0.7.1
 
-      - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2.0.1
+      - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2.1.2
         with:
           bun-version-file: buildtools/wasm/package.json
 
@@ -58,7 +58,7 @@ jobs:
       - run: go run ./build wasm
         if: steps.check-diff.outcome == 'failure'
 
-      - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+      - uses: actions/attest-build-provenance@00014ed6ed5efc5b1ab7f7f34a39eb55d41aa4f8 # v3.1.0
         if: steps.check-diff.outcome == 'failure'
         with:
           subject-path: internal/wasm/*.wasm
