@@ -1,6 +1,11 @@
 name: CI
 on:
   workflow_call:
+    inputs:
+      snapshot:
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -25,5 +30,5 @@ jobs:
         run: go run ./build test
 
       - name: build snapshot
-        if: startsWith(matrix.os, 'ubuntu-')
+        if: ${{ inputs.snapshot && startsWith(matrix.os, 'ubuntu-') }}
         run: go run ./build snapshot
