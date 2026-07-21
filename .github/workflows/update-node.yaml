@@ -31,7 +31,7 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
 
-      - uses: curioswitch/go-build/.github/actions/setup-go@a2e54f5c6b6cff10d3b5ac6fcba4de7a411c6736 # v0.8.1
+      - uses: curioswitch/go-build/.github/actions/setup-go@dd0ed390a0f1326e9426d4adb1b6ec2a97320a45 # v0.8.2
 
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
