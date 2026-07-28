@@ -27,11 +27,11 @@ jobs:
           app-id: ${{ vars.WASILIBS_APP_ID }}
           private-key: ${{ secrets.WASILIBS_APP_PRIVATE_KEY }}
 
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
 
-      - uses: curioswitch/go-build/.github/actions/setup-go@dd0ed390a0f1326e9426d4adb1b6ec2a97320a45 # v0.8.2
+      - uses: curioswitch/go-build/.github/actions/setup-go@8cee71a440fb70ec08525081efdf8088d2b3618e # v0.8.3
 
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
