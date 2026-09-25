@@ -36,7 +36,7 @@ jobs:
         with:
           subject-path: |-
             internal/wasm/*.wasm
-            internal/wasm/*.go
+            internal/wasm/*.wasm.go
 
       - name: build and create PR
         if: steps.check-diff.outcome == 'failure'
